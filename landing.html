@@ -951,6 +951,20 @@
       opacity: 1;
       transform: translateX(0);
     }
+    /* Interactive Magic Glow */
+    .magic-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(201,150,58,0.12) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: opacity 0.3s;
+    }
   </style>
 </head>
 
@@ -964,7 +978,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">AI-powered · Early Access</div>
-    <h1 class="fade-up">Get paid faster<br>with an AI that<br><em>chases for you</em></h1>
+    <h1 class="fade-up">Done doing the work,<br>but still chasing<br><em>the payment?</em></h1>
     <p class="hero-sub fade-up delay-1">Receively is the smart invoicing tool for freelancers, small agencies and
       Individual. Create invoices in seconds, automate follow-ups, and finally understand your cash flow — all powered
       by AI.</p>
@@ -1359,6 +1373,16 @@
         observer.observe(el);
       });
 
+      // Magic Cursor Glow
+      const glow = document.createElement('div');
+      glow.className = 'magic-glow';
+      document.body.appendChild(glow);
+
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+
       // Waitlist Form Button Logic
       const waitlistForm = document.getElementById('waitlist-form');
       if (waitlistForm) {
@@ -1401,6 +1425,27 @@
             }
             alert('Something went wrong. Please try again later.');
           });
+        });
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 3D Tilt Animations for Stunning Engagement
+      if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll(".fcard"), {
+          max: 8,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.15,
+        });
+
+        VanillaTilt.init(document.querySelectorAll(".pain-item"), {
+          max: 5,
+          speed: 300,
+          scale: 1.02
         });
       }
     });
